@@ -34,24 +34,50 @@
 
           <?php 
           if (isset($_POST["num1"])) {
-            $num1 = $_POST["num1"];
+
+            $num1 = intval($_POST["num1"]);
             $op = $_POST["op"];
-            $num2 = $_POST["num2"];
+            $num2 = intval($_POST["num2"]);
             $result = 0;
 
-            if($op == "+"){
+            switch ($op) {
+              case "+":
               $result = $num1 + $num2;
-            }elseif($op == "-"){
+              break;
+
+              case "-":
               $result = $num1 - $num2;
-            }elseif($op == "*"){
-              $result = $num1 * $num2; 
-            }elseif($op == "/"){
-              $result = $num1 / $num2;
-            }else {
-              $result = "operador inválido";  
+              break;
+
+              case "*":
+              $result = $num1 * $num2;
+
+              break;
+
+              case "/":
+              $result = "no se puede dividir";
+
+              if ($num2 != 0) {
+
+                $result = $num1 / $num2;
+
+              }
+
+              
+
+              break;
+              
+              default:
+
+              $result = "operador inválido";
+
+              break;
             }
+
           }else{
+
             $result = 0;
+
           }
 
           ?>
